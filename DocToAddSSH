@@ -1,0 +1,22 @@
+# Using SSH
+
+1. Generate an SSH key (if you haven't already):
+
+  ===> ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+Follow the prompts and save the key in the default location (~/.ssh/id_rsa).
+
+2. Add the SSH key to your GitHub account:
+
+  ===> cat ~/.ssh/id_rsa.pub
+
+Go to GitHub SSH settings.
+
+3. Add a new SSH key and paste the contents of the public key.
+4. Switch your Git remote to SSH:
+
+  ===> git remote set-url origin git@github.com:Pankaj422002/LC_repo.git
+
+5. Push your code:
+
+  ===> git push origin master
