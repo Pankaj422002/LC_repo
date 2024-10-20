@@ -1,4 +1,4 @@
-// PasswordCracking_CF.cpp
+// MessageTransmissionError.cpp
 /* JAI SHREE RAM */
 
 #include<bits/stdc++.h>
@@ -53,55 +53,51 @@ void __f (const char* names, Arg1&& arg1, Args&&... args)
 
 const int N = 200005;
 
-string CrackPswd(int n){
-    string ans="";
-    int res,k=n,i=0;
-    for(;i<n;i++){
-        string curr = ans+"0";
-        cout<< "? "<< curr <<endl;
-        cin>>res;
-        // res = issubstring(curr);        
-        if(res){
-            ans+="0";
-        }else{
-            curr = ans+"1";
-            cout<<"? "<< curr<<endl;
-            cin>>res;
-            // res = issubstring(curr);
-            if(res){
-                ans+="1";
-            }else{
-                break;
-            }
-        }
-    }
+vector<int> LPS(string &str){
+	vector<int> ans(str.length(),0);
+	int i=1,len=0;
+	while(i<str.length()){
+		if(str[i]==str[len]){
+			len++;
+			ans[i]=len;
+			i++;
+		}else{
+			if(len>0)
+				len=ans[len-1];
+			else{
+				ans[i]=0;
+				i++;
+			}
+		}
+	}
+	return ans;
 
-    for(;i<n;i++){
-        string curr = "0"+ans;
-        cout<<"? "<<curr<<endl;
-        cin>>res;
-        // res = issubstring(curr);        
-        if(res){
-            ans="0"+ans;
-        }else{
-            ans="1"+ans;
-        }
-    }
+}
 
-    return ans;
+pair<bool, string> FindString(string str){
+	pair<bool, string> ans;
+	vector<int> lps = LPS(str);
 
+	if(lps[str.length()-1]==0)return {false,""};
+	if(2*lps[str.length()-1]==str.length())return{false,""};
+	if(2*lps[str.length()-1] < str.length())return{false,""};
+
+	string res = str.substr(str.length()-lps[str.length()-1]);
+
+	return {true,res};
 }
 
 void solve(){
-    
-    int n;cin>>n;
-    string ans = CrackPswd(n);
-    cout<<"! "<< ans <<endl;
-
+    string str;cin>>str;
+    pair<bool,string> ans = FindString(str);
+    if(ans.first){
+    	cout<<"YES"<<endl<<ans.second;
+    }else{
+    	cout<<"NO";
+    }
 }
 
 int32_t main(){
-
 
 #ifndef ONLINE_JUDGE
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);    
@@ -110,14 +106,15 @@ int32_t main(){
     clock_t z = clock();
 #endif
 
-
-    int t=1;
-    cin>>t;
-    while(t--)solve();
+    // int t=1;
+    // cin>>t;
+    // while(t--)solve();
+    solve();
 
 #ifndef ONLINE_JUDGE
     cerr << "Run Time : " << ((double)(clock() - z) / CLOCKS_PER_SEC);
 #endif
+
 
     return 0;
 }

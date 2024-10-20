@@ -1,4 +1,4 @@
-// PasswordCracking_CF.cpp
+// TurtleAndGoodPair.cpp
 /* JAI SHREE RAM */
 
 #include<bits/stdc++.h>
@@ -53,55 +53,30 @@ void __f (const char* names, Arg1&& arg1, Args&&... args)
 
 const int N = 200005;
 
-string CrackPswd(int n){
-    string ans="";
-    int res,k=n,i=0;
-    for(;i<n;i++){
-        string curr = ans+"0";
-        cout<< "? "<< curr <<endl;
-        cin>>res;
-        // res = issubstring(curr);        
-        if(res){
-            ans+="0";
-        }else{
-            curr = ans+"1";
-            cout<<"? "<< curr<<endl;
-            cin>>res;
-            // res = issubstring(curr);
-            if(res){
-                ans+="1";
-            }else{
-                break;
-            }
-        }
-    }
-
-    for(;i<n;i++){
-        string curr = "0"+ans;
-        cout<<"? "<<curr<<endl;
-        cin>>res;
-        // res = issubstring(curr);        
-        if(res){
-            ans="0"+ans;
-        }else{
-            ans="1"+ans;
-        }
-    }
-
-    return ans;
-
+string FindStringMaxGoodPair(string &s, int n){
+	unordered_map<char, int> mp;
+	for(auto it: s)mp[it]++;
+	string ans="";
+	while(n>0){
+		for(auto &it: mp){
+			if(it.second>0){
+				ans.push_back(it.first);
+				n--;
+			}
+			it.second--;
+		}
+	}
+	return ans;
 }
 
 void solve(){
-    
     int n;cin>>n;
-    string ans = CrackPswd(n);
-    cout<<"! "<< ans <<endl;
-
+    string s;cin>>s;
+    string ans = FindStringMaxGoodPair(s,n);
+    cout<<ans<<endl;
 }
 
 int32_t main(){
-
 
 #ifndef ONLINE_JUDGE
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);    
@@ -110,7 +85,6 @@ int32_t main(){
     clock_t z = clock();
 #endif
 
-
     int t=1;
     cin>>t;
     while(t--)solve();
@@ -118,6 +92,7 @@ int32_t main(){
 #ifndef ONLINE_JUDGE
     cerr << "Run Time : " << ((double)(clock() - z) / CLOCKS_PER_SEC);
 #endif
+
 
     return 0;
 }
