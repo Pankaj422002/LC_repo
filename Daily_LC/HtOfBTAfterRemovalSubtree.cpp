@@ -14,7 +14,7 @@ using namespace std;
 #define vpi             vector<pii>
 #define vpp             vector<pair<int,pii>>
 #define mii             map<int,int>
-#define umpii            unordered_map<int,int>
+#define umpii           unordered_map<int,int>
 #define mpi             map<pii, int>
 #define spi             set<pii>
 #define endl            "\n"
@@ -127,61 +127,46 @@ int fillht(TreeNode* root, int level, umpii &val_ht, umpii &val_lvl, unordered_m
     return val_ht[root->val]=1+ max(fillht(root->left, level+1, val_ht, val_lvl, lvl_valarr), fillht(root->right, level+1, val_ht, val_lvl, lvl_valarr));
 }
 
-void getTop2(TreeNode* root, vector<vector<int>> &top2_level, umpii &val_ht){
-    queue<TreeNode*> q;
-    q.push(root);
-    int level=0;
-
-    while(!q.empty()){
-        int n=q.size();
-        for(int i=0;i<n;i++){
-            TreeNode* curr=q.front();q.pop();
-
-            if(top2_level[0][level] <= val_ht[curr->val])top2_level[1][level]=top2_level[0][level];
-            else top2_level[1][level]=max(top2_level[1][level], val_ht[curr->val]);
-
-
-            top2_level[0][level]=max(top2_level[0][level], val_ht[curr->val]);
-
-            if(curr->left)q.push(curr->left);
-            if(curr->right)q.push(curr->right);
-        }
-        level++;
-    }
-}
-
 vector<int> treeQueries(TreeNode* root, vector<int>& queries) {
     vector<int> ans;
     umpii val_ht;
     umpii val_lvl;
     unordered_map<int,vector<int>> lvl_valarr;
-    
-    vector<vector<int>> top2_level(2,vector<int>(100002, INT_MIN));
 
     int total_ht = fillht(root,0,val_ht,val_lvl,lvl_valarr);
 
-    getTop2(root, top2_level, val_ht);
+    for(auto curr: queries){
+        vector<int> temp = lvl_valarr[val_lvl[curr]];
 
-    // for(auto it: top2_level){
-    //     for(auto ele: it)cout<<ele<<" ";
+        int ht=INT_MIN;
+        for(auto it: temp){
+            if(it == curr){
+                ht=max(ht, val_lvl[it]-1);
+            }else{
+                ht=max(ht, val_lvl[it]+val_ht[it]);
+            }
+        }
+        ans.push_back(ht);
+    }
+
+
+
+    // cout<<"val_ht : "<<endl;
+    // print1(val_ht);
+    // cout<<"val_lvl : "<<endl;
+    // print1(val_lvl);
+    
+    // cout<<"lvl_valarr : "<<endl;
+    // for(auto it: lvl_valarr){
+    //     cout<<it.first<<"-> ";
+    //     for(auto ele: it.second)cout<<ele<<" ";
     //     cout<<endl;
     // }
 
-    for(auto curr: queries){
-        int ht=val_lvl[curr]-1;
-        int curr_lvl = val_lvl[curr];
-
-        int max1=top2_level[0][curr_lvl];
-        int max2=top2_level[1][curr_lvl];
-        
-        if(val_ht[curr] == max1)ht=max(ht, curr_lvl+max2);
-        else ht=max(ht, curr_lvl+max1);
-
-        ans.push_back(ht);
-    }
     
     return ans;
 }
+
 
 void solve(){
     int n,m;cin>>n>>m;

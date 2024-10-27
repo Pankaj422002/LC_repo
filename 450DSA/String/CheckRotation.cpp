@@ -72,20 +72,50 @@ vector<int> LPS(string str){
     return lps;
 }
 
+bool kmp(string str, string ptr){
+    if(str.length()<ptr.length())return false;
+    
+    vector<int> lps = LPS(ptr);
+    int i=0,j=0;
+    while(i<str.length()){
+        if(str[i]==ptr[j]){
+            i++;j++;
+        }
+        if(j==ptr.length())return true;
+        else if(i<str.length() and str[i]!=ptr[j]){
+            if(j>0){
+                j=lps[j-1];
+            }else{ 
+                i++;
+            }
+        }
+    }
 
+    return j==ptr.length()?true:false;
+    
+}
+
+bool isRotated(string str1, string str2){
+    if(str1.length()!=str2.length())return false;
+    
+    return kmp(str1+str1, str2);
+
+}
 
 void solve(){
-   string str1, str2;cin>>str1>>str2;
-    
-
+   string str1,str2;
+  cin.get();
+  getline(cin,str1);
+  getline(cin,str2);
+  cout<< isRotated(str1, str2) <<endl;
 }
 
 int32_t main(){
 
 #ifndef ONLINE_JUDGE
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-    freopen("../input.txt","r",stdin);
-    freopen("../output.txt","w",stdout);
+    freopen("../../input.txt","r",stdin);
+    freopen("../../output.txt","w",stdout);
     clock_t z = clock();
 #endif
 
