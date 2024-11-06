@@ -124,7 +124,6 @@ string shortestSuperstring(vector<string>& A) {
     
     return result;
 }
-    
 
 void solve(){
     int n;cin>>n;
