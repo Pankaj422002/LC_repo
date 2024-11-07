@@ -54,34 +54,37 @@ const int N = 200005;
 
 string Multiply(string &a, string &b){
     vector<int> result(a.length()+b.length(), 0);
-    
     int n1_i=0;
     for(int i=b.length()-1;i>=0;i--){
         int n1=b[i]-'0';
-        
-        int n2_i=0, carry=0;
+        int carry=0, n2_i=0;
+
         for(int j=a.length()-1;j>=0;j--){
             int n2=a[j]-'0';
-            int sum = n1*n2 + result[n1_i+n2_i]+carry;
-            result[n1_i+n2_i]=sum%10;
+            int sum = n1*n2 + carry + result[n1_i+n2_i];
+            result[n1_i+n2_i] = sum%10;
             carry=sum/10;
             n2_i++;
         }
+
         if(carry)result[n1_i+n2_i]=carry;
+
         n1_i++;
     }
-    
-    int i=result.size();
+
+    int i=result.size()-1;
+    while(i>=0 and result[i]==0)i--;
+
+    if(i==-1)return "0";
+
+    string ans="";
     while(i>=0){
-        if(result[i]!=0)break;
+        ans.push_back(result[i]+'0');
         i--;
     }
-    
-    string ans="";
-    while(i>=0)
-
     return ans;
 }
+
 
 void solve(){
    //your code

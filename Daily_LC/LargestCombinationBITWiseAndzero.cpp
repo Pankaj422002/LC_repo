@@ -1,4 +1,4 @@
-// FactorialOfaLargeNumber.cpp
+// LargestCombinationBITWiseAndzero.cpp
 /* JAI SHREE RAM */
 
 #include<bits/stdc++.h>
@@ -49,53 +49,23 @@ void __f (const char* names, Arg1&& arg1, Args&&... args)
 
 const int N = 200005;
 
-string Multiply(string &a, string &b){
-	vector<int> result(a.length()+b.length(), 0);
-	int n1_i=0;
-	for(int i=b.length()-1;i>=0;i--){
-		int n1=b[i]-'0';
-		int carry=0, n2_i=0;
-
-		for(int j=a.length()-1;j>=0;j--){
-			int n2=a[j]-'0';
-			int sum = n1*n2 + carry + result[n1_i+n2_i];
-			result[n1_i+n2_i] = sum%10;
-			carry=sum/10;
-			n2_i++;
-		}
-
-		if(carry)result[n1_i+n2_i]=carry;
-
-		n1_i++;
-	}
-
-	int i=result.size()-1;
-	while(i>=0 and result[i]==0)i--;
-
-	if(i==-1)return "0";
-
-	string ans="";
-	while(i>=0){
-		ans.push_back(result[i]+'0');
-		i--;
-	}
-	return ans;
-}
-
-string FindFactorial(int n){
-	string ans="1";
-
-	for(int i=1;i<=n;i++){
-		string curr = to_string(i);
-		ans = Multiply(ans, curr);
-	}
-
-	return ans;
+int largestCombination(vector<int>& candidates) {
+    int ans=0;
+    for(int i=0;i<32;i++){
+        int mask = 1<<i, cnt=0;;
+        for(int i=0;i<candidates.size();i++){
+            if(candidates[i]&mask)cnt++;
+        }
+        ans=max(ans, cnt);
+    }
+    return ans;
 }
 
 void solve(){
 	int n;cin>>n;
-	cout<<FindFactorial(n)<<endl;
+	vector<int> candidates(n);
+	for(int i=0;i<n;i++)cin>>candidates[i];
+	cout<<largestCombination(candidates)<<endl;
 }
 
 int32_t main(){
