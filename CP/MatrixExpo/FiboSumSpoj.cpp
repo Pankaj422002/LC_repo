@@ -3,7 +3,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// #define ONLINE_JUDGE
+#define ONLINE_JUDGE
 #define int             long long int
 #define F               first
 #define S               second
@@ -52,6 +52,9 @@ void __f (const char* names, Arg1&& arg1, Args&&... args)
 
 const int N = 200005;
 const int sz = 2;
+
+const int mod = 1000000007;
+
 struct Mat{
     int m[sz][sz];
     Mat(){
@@ -69,7 +72,7 @@ struct Mat{
             for(int j=0;j<sz;j++){
                 
                 for(int k=0;k<sz;k++){
-                    res.m[i][j] += m[i][k]*a.m[k][j];
+                    res.m[i][j] = (res.m[i][j]%mod + (m[i][k]*a.m[k][j])%mod)%mod;
                 }
                 
             }
@@ -81,7 +84,8 @@ struct Mat{
 
 int Fibo(int n){
     Mat res;res.Identity();
-    if(n<=2)return n;
+    if(n<2)return n;
+    if(n==2)return 1;
     
     Mat T;
     T.m[0][0]=T.m[0][1]=T.m[1][0]=1;
@@ -93,12 +97,12 @@ int Fibo(int n){
         T=T*T;
         n>>=1;
     }
-    return res.m[0][0]+res.m[0][1];
+    return (res.m[0][0]%mod + res.m[0][1]%mod)%mod;
 }
 
-int FiboSum(int a, int b){
+int FiboSum(int n, int m){
 
-
+    return (Fibo(m+2)%mod - Fibo(n+1)%mod + mod)%mod ;
 
 }
 
