@@ -72,6 +72,8 @@ struct SegmentLazyTree{
 		build(start,mid,2*node+1,arr);
 		build(mid+1,end,2*node+2,arr);
 		st[node]=st[2*node+1]+st[2*node+2];
+
+		return;
 	}
 
 	void build(vector<int> &arr){
@@ -127,8 +129,8 @@ struct SegmentLazyTree{
 		if(l<=start and end<=r){
 			st[node] += val*(end-start+1);
 			if(start!=end){
-				lazy[2*node+1] += lazy[node];
-				lazy[2*node+2] += lazy[node];
+				lazy[2*node+1] += val;
+				lazy[2*node+2] += val;
 			}
 			return;
 		}
