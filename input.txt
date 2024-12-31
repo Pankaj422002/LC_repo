@@ -1,10 +1,14 @@
 1
-8 3
-3 2 4 5 1 1 5 3
-2 4
-1 2 5 1
-2 4
+37
+cbabddddbc addbaacbbd cccbacdccd cdcaccacac dddbacabbd bdbdadbccb ddadbacddd bbccdddadd dcabaccbbd ddddcddadc bdcaaaabdd adacdcdcdd cbaaadbdbb bccbabcbab accbdccadd dcccaaddbc cccccacabd acacdbcbbc dbbdbaccca bdbddbddda daabadbacb baccdbaada ccbabaabcb dcaabccbbb bcadddaacc acddbbdccb adbddbadab dbbcdcbcdd ddbabbadbb bccbcbbbab dabbbdbbcb dacdabadbb addcbbabab bcbbccadda abbcacadac ccdadcaada bcacdbccdb
+bcbbcccc
 
+3
+acca bbbb caca
+aba
+2
+abba baab 
+bab
 
 
 
