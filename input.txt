@@ -1,48 +1,7 @@
-<<<<<<< HEAD
-1
-<<<<<<< HEAD
-37
-cbabddddbc addbaacbbd cccbacdccd cdcaccacac dddbacabbd bdbdadbccb ddadbacddd bbccdddadd dcabaccbbd ddddcddadc bdcaaaabdd adacdcdcdd cbaaadbdbb bccbabcbab accbdccadd dcccaaddbc cccccacabd acacdbcbbc dbbdbaccca bdbddbddda daabadbacb baccdbaada ccbabaabcb dcaabccbbb bcadddaacc acddbbdccb adbddbadab dbbcdcbcdd ddbabbadbb bccbcbbbab dabbbdbbcb dacdabadbb addcbbabab bcbbccadda abbcacadac ccdadcaada bcacdbccdb
-bcbbcccc
-=======
-8 3
-3 2 4 5 1 1 5 3
-2 4
-1 2 5 1
-=======
 2
-3 3 1 1
-2 3 1 2
-
-
-2
-6 5
-6 4 8 5 2 7
-0 1
-0 3
->>>>>>> fa7ccfc (Daily_LC/2466_countWaysToBuildGoodString.cpp added)
-2 4
->>>>>>> 6896f12969ddb8b789da667181e5b944c2c7655f
-
-3
-acca bbbb caca
-aba
-2
-abba baab 
-bab
-
-
-
-
-12 -54
-0 -8 -14 7 -21 21 -7 5 13 -6 30 300
-9 969621127
--2772 6927 4773 -2687 7167 -8995 2940 8869 526
-10 -9681425
-1556913 -259675 -7667451 -4380629 -4643857 -1436369 7695949 -4357992 -842512 -118463
-4 -5
-7 -9 15 -2
-4 6
-5 -7 3 5
-3 -7
-1 2 3
+6 3
+1 4 6 7 8 20
+2 7 15
+12 3
+1 2 3 4 5 6 7 8 9 10 30 31
+2 7 15
