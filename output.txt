@@ -1,7 +1,1 @@
-<<<<<<< HEAD
-2
-=======
-as hero 
-et code 
-
->>>>>>> refs/remotes/origin/master
+5
