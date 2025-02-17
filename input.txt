@@ -1,7 +1,6 @@
 2
-abc
-cb34
-
+AAB
+AAABBC
 
 
 
